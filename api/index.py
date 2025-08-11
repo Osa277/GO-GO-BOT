@@ -1367,5 +1367,77 @@ def api_index():
 
 if __name__ == '__main__':
     import os
+    import threading
+    import time
+    
+    def auto_signal_sender():
+        """Background function to send signals every 3 minutes"""
+        def send_best_signal():
+            try:
+                # Get latest signals from the signals endpoint
+                from flask import current_app
+                with app.test_client() as client:
+                    response = client.get('/api/signals')
+                    if response.status_code == 200:
+                        signals_data = response.get_json()
+                    else:
+                        signals_data = None
+                if signals_data and 'signals' in signals_data:
+                    # Get 3-minute signals first, then highest confidence
+                    signals_3m = [s for s in signals_data['signals'] if s.get('timeframe') == '3M']
+                    if signals_3m:
+                        best_signal = max(signals_3m, key=lambda x: x['confidence'])
+                    else:
+                        best_signal = max(signals_data['signals'], key=lambda x: x['confidence'])
+                    
+                    if best_signal['confidence'] >= 65:
+                        confidence_emoji = "🔥" if best_signal['confidence'] > 75 else "⚡"
+                        side_emoji = "🟢" if best_signal['side'] == 'buy' else "🔴"
+                        
+                        message = f"""
+{confidence_emoji} <b>LIVE SIGNAL</b> {side_emoji}
+
+<b>Symbol:</b> {best_signal['symbol']}
+<b>Action:</b> {best_signal['side'].upper()}
+<b>Entry:</b> {best_signal['entry']}
+<b>Stop Loss:</b> {best_signal['sl']}
+<b>Take Profit:</b> {best_signal['tp']}
+<b>Confidence:</b> {best_signal['confidence']}%
+<b>Timeframe:</b> {best_signal['timeframe']}
+
+🕐 <i>{datetime.now().strftime('%H:%M:%S')}</i>
+🚀 <b>GO-GO Bot</b>
+"""
+                        send_telegram_alert_to_users(message)
+                        print(f"Auto-signal sent: {best_signal['symbol']} {best_signal['side']}")
+            except Exception as e:
+                print(f"Auto-signal error: {e}")
+        
+        # Send startup message
+        startup_msg = """
+🚀 <b>GO-GO Bot 24/7 ACTIVATED!</b>
+
+✅ Auto-signals every 3 minutes
+📊 3min timeframe priority  
+🎯 65%+ confidence only
+💻 Computer can be OFF!
+
+<i>Professional signals incoming...</i>
+"""
+        send_telegram_alert_to_users(startup_msg)
+        
+        while True:
+            try:
+                send_best_signal()
+                time.sleep(180)  # 3 minutes = 180 seconds
+            except Exception as e:
+                print(f"Signal sender error: {e}")
+                time.sleep(60)
+
+    # Start auto signal sender in background
+    signal_thread = threading.Thread(target=auto_signal_sender, daemon=True)
+    signal_thread.start()
+    print("🚀 Background signal sender started!")
+    
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
