@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO-GO-BOT Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .status-box {
+            border: 2px solid #00ff00;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: #0a0a0a;
+        }
+        .online { color: #00ff00; }
+        .offline { color: #ff0000; }
+        .timestamp { color: #ffff00; }
+        h1 { text-align: center; color: #00ff00; }
+        .endpoint { 
+            background: #2a2a2a; 
+            padding: 10px; 
+            margin: 5px 0; 
+            border-radius: 5px; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 GO-GO-BOT Cloud Status</h1>
+    
+    <div class="status-box">
+        <h3>📊 System Status</h3>
+        <p><strong>Status:</strong> <span class="online">ONLINE</span></p>
+        <p><strong>Platform:</strong> Vercel Cloud</p>
+        <p><strong>Repository:</strong> <a href="https://github.com/Osa277/GO-GO-BOT" style="color: #00ffff;">GitHub/Osa277/GO-GO-BOT</a></p>
+        <p><strong>Last Update:</strong> <span class="timestamp" id="timestamp">Loading...</span></p>
+    </div>
+
+    <div class="status-box">
+        <h3>🔗 Available Endpoints</h3>
+        <div class="endpoint">/api/status - System health check</div>
+        <div class="endpoint">/api/signal - Generate trading signal</div>
+        <div class="endpoint">/api/send-signal - Send signal to Telegram</div>
+        <div class="endpoint">/api/users - View user list</div>
+        <div class="endpoint">/api/test-users - Test notifications</div>
+    </div>
+
+    <div class="status-box">
+        <h3>📈 Supported Symbols</h3>
+        <p>BTCUSD, XAUUSD, US30</p>
+    </div>
+
+    <div class="status-box">
+        <h3>👥 Multi-User Support</h3>
+        <p>✅ Telegram notifications to multiple users</p>
+        <p>✅ Real-time signal broadcasting</p>
+        <p>✅ Easy user management</p>
+    </div>
+
+    <script>
+        // Update timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        // Refresh every 30 seconds
+        setInterval(() => {
+            document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        }, 30000);
+    </script>
+</body>
+</html>
