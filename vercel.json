@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "api/index.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
     }
   ],
   "routes": [
@@ -19,6 +22,11 @@
   "env": {
     "TELEGRAM_TOKEN": "8120881444:AAEDiMtf02xlqPjFQ1cJPhMZf3XkAIUutro",
     "TELEGRAM_CHAT_ID": "5362504152"
+  },
+  "functions": {
+    "api/index.py": {
+      "maxDuration": 30
+    }
   },
   "github": {
     "silent": true
