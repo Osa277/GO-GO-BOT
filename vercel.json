@@ -19,5 +19,8 @@
   "env": {
     "TELEGRAM_TOKEN": "8120881444:AAEDiMtf02xlqPjFQ1cJPhMZf3XkAIUutro",
     "TELEGRAM_CHAT_ID": "5362504152"
+  },
+  "github": {
+    "silent": true
   }
 }
