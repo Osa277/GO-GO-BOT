@@ -1,0 +1,24 @@
+import requests
+
+test_signal = {
+    "symbol": "BTCUSD",
+    "timeframe": "15min",
+    "side": "buy",
+    "order_type": "buy",
+    "entry": 30000,
+    "sl": 29900,
+    "tp.1": 30100,
+    "tp.2": 30200,
+    "tp.3": 30300,
+    "tp.4": 30400,
+    "tp.5": 30500,
+    "tp": [30100, 30200, 30300, 30400, 30500],
+    "confidence": 80,
+    "rr_ratio": 2.0,
+    "atr": 100,
+    "risk": 100,
+    "trend": "bullish",
+    "timestamp": "2025-07-27T12:00:00",
+    "realistic_levels": True
+}
+requests.post('http://localhost:5001/webhook', json=test_signal)

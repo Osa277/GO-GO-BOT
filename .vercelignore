@@ -1,0 +1,69 @@
+# Vercel ignore file - exclude large/unnecessary files
+
+# Screenshots and images
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Logs
+*.log
+trading_bot.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Local data files
+*.json
+!vercel.json
+!package.json
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# Test files
+test_*.py
+
+# Large MT5 data files
+*.ex4
+*.ex5
+*.mqh
+*.mq4
+*.mq5
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+!requirements.txt
+
+# Local development files
+config_local.py
+.env.local
