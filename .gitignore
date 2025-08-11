@@ -1,1 +1,53 @@
+# Git ignore file for GO-GO-BOT
+
+# Log files
+*.log
+trading_bot.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Screenshots and large media files
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Data files
+*.json
+!vercel.json
+!package.json
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env.local
+config_local.py
+
+# Vercel
 .vercel
