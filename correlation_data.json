@@ -2,54 +2,54 @@
   "correlation_matrix": {
     "BTCUSD": {
       "BTCUSD": 1.0,
-      "XAUUSD": -0.1105769788615153,
-      "EURUSD": 0.04481702695981796,
-      "GBPUSD": 0.2933788337873059,
-      "USDJPY": -0.01831096415495413,
-      "US30": 0.04891181444563646
+      "XAUUSD": null,
+      "EURUSD": null,
+      "GBPUSD": null,
+      "USDJPY": null,
+      "US30": null
     },
     "XAUUSD": {
-      "BTCUSD": -0.1105769788615153,
+      "BTCUSD": null,
       "XAUUSD": 1.0,
-      "EURUSD": -0.10432584718215106,
-      "GBPUSD": -0.10812049373260196,
-      "USDJPY": 0.12885035464730885,
-      "US30": 0.049167108322435864
+      "EURUSD": null,
+      "GBPUSD": null,
+      "USDJPY": null,
+      "US30": null
     },
     "EURUSD": {
-      "BTCUSD": 0.04481702695981796,
-      "XAUUSD": -0.10432584718215106,
+      "BTCUSD": null,
+      "XAUUSD": null,
       "EURUSD": 1.0,
-      "GBPUSD": 0.580965656010113,
-      "USDJPY": -0.7373502858977621,
-      "US30": -0.2800000373938446
+      "GBPUSD": null,
+      "USDJPY": null,
+      "US30": null
     },
     "GBPUSD": {
-      "BTCUSD": 0.2933788337873059,
-      "XAUUSD": -0.10812049373260196,
-      "EURUSD": 0.580965656010113,
+      "BTCUSD": null,
+      "XAUUSD": null,
+      "EURUSD": null,
       "GBPUSD": 1.0,
-      "USDJPY": -0.5787970809761459,
-      "US30": -0.196123137579439
+      "USDJPY": null,
+      "US30": null
     },
     "USDJPY": {
-      "BTCUSD": -0.01831096415495413,
-      "XAUUSD": 0.12885035464730885,
-      "EURUSD": -0.7373502858977621,
-      "GBPUSD": -0.5787970809761459,
+      "BTCUSD": null,
+      "XAUUSD": null,
+      "EURUSD": null,
+      "GBPUSD": null,
       "USDJPY": 1.0,
-      "US30": 0.2116239805096863
+      "US30": null
     },
     "US30": {
-      "BTCUSD": 0.04891181444563646,
-      "XAUUSD": 0.049167108322435864,
-      "EURUSD": -0.2800000373938446,
-      "GBPUSD": -0.196123137579439,
-      "USDJPY": 0.2116239805096863,
+      "BTCUSD": null,
+      "XAUUSD": null,
+      "EURUSD": null,
+      "GBPUSD": null,
+      "USDJPY": null,
       "US30": 1.0
     }
   },
-  "last_updated": "2025-08-08T02:28:32.599748",
+  "last_updated": "2025-08-11T19:21:43.411261",
   "historical_correlations": [
     {
       "timestamp": "2025-08-04T06:31:33.564665",
@@ -751,6 +751,59 @@
           "EURUSD": -0.2800000373938446,
           "GBPUSD": -0.196123137579439,
           "USDJPY": 0.2116239805096863,
+          "US30": 1.0
+        }
+      }
+    },
+    {
+      "timestamp": "2025-08-11T19:21:43.411261",
+      "matrix": {
+        "BTCUSD": {
+          "BTCUSD": 1.0,
+          "XAUUSD": null,
+          "EURUSD": null,
+          "GBPUSD": null,
+          "USDJPY": null,
+          "US30": null
+        },
+        "XAUUSD": {
+          "BTCUSD": null,
+          "XAUUSD": 1.0,
+          "EURUSD": null,
+          "GBPUSD": null,
+          "USDJPY": null,
+          "US30": null
+        },
+        "EURUSD": {
+          "BTCUSD": null,
+          "XAUUSD": null,
+          "EURUSD": 1.0,
+          "GBPUSD": null,
+          "USDJPY": null,
+          "US30": null
+        },
+        "GBPUSD": {
+          "BTCUSD": null,
+          "XAUUSD": null,
+          "EURUSD": null,
+          "GBPUSD": 1.0,
+          "USDJPY": null,
+          "US30": null
+        },
+        "USDJPY": {
+          "BTCUSD": null,
+          "XAUUSD": null,
+          "EURUSD": null,
+          "GBPUSD": null,
+          "USDJPY": 1.0,
+          "US30": null
+        },
+        "US30": {
+          "BTCUSD": null,
+          "XAUUSD": null,
+          "EURUSD": null,
+          "GBPUSD": null,
+          "USDJPY": null,
           "US30": 1.0
         }
       }
