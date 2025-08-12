@@ -37,8 +37,38 @@ def get_binance_price(symbol):
         return None
 
 # Dummy functions for MT5 compatibility (for other symbols)
+import pandas as pd
 def fetch_market_data(symbol, tf_minutes, bars):
-    return None
+    # Only support BTCUSD and XAUUSD for cloud
+    symbol_map = {
+        'BTCUSD': 'BTCUSDT',
+        'XAUUSD': 'XAUUSDT'
+    }
+    if symbol not in symbol_map:
+        return None
+    binance_symbol = symbol_map[symbol]
+    # Binance interval map
+    interval_map = {1: '1m', 3: '3m', 5: '5m', 15: '15m', 30: '30m', 60: '1h', 240: '4h', 1440: '1d'}
+    interval = interval_map.get(tf_minutes, '1m')
+    url = f'https://api.binance.com/api/v3/klines?symbol={binance_symbol}&interval={interval}&limit={bars}'
+    try:
+        response = requests.get(url, timeout=10)
+        data = response.json()
+        # Format to pandas DataFrame
+        df = pd.DataFrame(data, columns=[
+            'open_time', 'open', 'high', 'low', 'close', 'volume',
+            'close_time', 'quote_asset_volume', 'num_trades',
+            'taker_buy_base_asset_volume', 'taker_buy_quote_asset_volume', 'ignore'
+        ])
+        df['open'] = df['open'].astype(float)
+        df['high'] = df['high'].astype(float)
+        df['low'] = df['low'].astype(float)
+        df['close'] = df['close'].astype(float)
+        df['volume'] = df['volume'].astype(float)
+        return df
+    except Exception as e:
+        logger.error(f"Binance OHLCV fetch error for {symbol}: {e}")
+        return None
 def get_current_price(symbol):
     if symbol in ['BTCUSD', 'XAUUSD']:
         return get_binance_price(symbol)
