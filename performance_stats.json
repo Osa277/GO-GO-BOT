@@ -1,11 +1,11 @@
 {
-  "total_signals": 7101,
+  "total_signals": 7105,
   "winning_signals": 0,
-  "losing_signals": 4249,
-  "total_pips": -3139633340.0,
+  "losing_signals": 4250,
+  "total_pips": -3132157540.0,
   "best_trade_pips": 0.0,
   "worst_trade_pips": -36266400.0,
-  "avg_pips_per_trade": -738911.1179100965,
+  "avg_pips_per_trade": -736978.2447058824,
   "win_rate": 0.0,
   "profit_factor": 0.0,
   "last_updated": "2025-07-27T19:19:16.825148"

@@ -89,7 +89,7 @@ def get_mt5_professional_data(symbol, timeframe='M5', count=100):
                 return mt5_data
         
         # 🥈 SECOND PRIORITY: Alpha Vantage for REAL forex data
-        if symbol in ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCHF', 'NZDUSD', 'USDCAD']:
+        if symbol in ['XAUUSD', 'BTCUSD']:  # ONLY BTC and GOLD
             real_data = get_alpha_vantage_real_data(symbol)
             if real_data:
                 print(f"✅ REAL Alpha Vantage data for {symbol}")
@@ -125,7 +125,7 @@ def get_alpha_vantage_real_data(symbol):
         API_KEY = "demo"  # Free tier
         
         # Force REAL forex data for our symbols
-        if symbol in ['EURUSD', 'GBPUSD', 'USDJPY', 'AUDUSD', 'USDCHF', 'NZDUSD', 'USDCAD']:
+        if symbol in ['XAUUSD', 'BTCUSD']:  # ONLY BTC and GOLD
             base_currency = symbol[:3]
             quote_currency = symbol[3:]
             
