@@ -1,7 +1,7 @@
 import time
+import sys
 import logging
 import signal
-import sys
 import threading
 from datetime import datetime, timedelta
 from config import SYMBOLS, TIMEFRAMES, RR_MULTIPLIERS, MAX_OPEN_TRADES, DAILY_LOSS_LIMIT, trade_stats, LOG_LEVEL
@@ -15,18 +15,42 @@ logging.basicConfig(
         logging.StreamHandler(sys.stdout)
     ]
 )
+import requests
 
 logger = logging.getLogger(__name__)
 
-# FORCE MT5 DATA ONLY - NO YAHOO FINANCE
-try:
-    from mt5_data import fetch_market_data, get_current_price, get_account_info, get_symbol_info, initialize_mt5, shutdown_mt5
-    logger.info("SUCCESS: Using MT5 data source for REAL-TIME signals")
-    MT5_AVAILABLE = True
-except ImportError as e:
-    logger.error(f"ERROR: MT5 not available: {e}")
-    logger.error("Please install MetaTrader5: pip install MetaTrader5")
-    sys.exit(1)
+
+# --- Real-time price fetch for BTCUSD and XAUUSD using Binance API ---
+def get_binance_price(symbol):
+    symbol_map = {
+        'BTCUSD': 'BTCUSDT',
+        'XAUUSD': 'XAUUSDT'
+    }
+    binance_symbol = symbol_map.get(symbol, symbol)
+    url = f'https://api.binance.com/api/v3/ticker/price?symbol={binance_symbol}'
+    try:
+        response = requests.get(url, timeout=5)
+        data = response.json()
+        return float(data['price'])
+    except Exception as e:
+        logger.error(f"Binance price fetch error for {symbol}: {e}")
+        return None
+
+# Dummy functions for MT5 compatibility (for other symbols)
+def fetch_market_data(symbol, tf_minutes, bars):
+    return None
+def get_current_price(symbol):
+    if symbol in ['BTCUSD', 'XAUUSD']:
+        return get_binance_price(symbol)
+    return None
+def get_account_info():
+    return {'balance': 10000, 'equity': 10000, 'server': 'Binance', 'trade_mode': 2}
+def get_symbol_info(symbol):
+    return {}
+def initialize_mt5():
+    return True
+def shutdown_mt5():
+    pass
 
 from smc_utils import generate_realistic_signal, calculate_realistic_tp_sl, atr
 from telegram_utils import send_enhanced_alert, send_trade_update, send_performance_update, send_system_alert
